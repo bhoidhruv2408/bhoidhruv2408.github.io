@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechDealsHub - Live Amazon & Flipkart Product Deals</title>
+    <meta name="description" content="Real-time Amazon & Flipkart product deals with affiliate links. Live prices, 360° views, and direct purchase links.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/360view.css">
+    <link rel="stylesheet" href="css/live-products.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">
+                    <a href="index.html" class="logo-text">
+                        <i class="fas fa-bolt"></i>
+                        <span>TechDealsHub</span>
+                    </a>
+                    <div class="tagline">Live Amazon & Flipkart Deals</div>
+                </div>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item"><a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link"><i class="fas fa-th-large"></i> Categories <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-content">
+                            <a href="categories/mobiles.html"><i class="fas fa-mobile-alt"></i> Mobiles</a>
+                            <a href="categories/laptops.html"><i class="fas fa-laptop"></i> Laptops</a>
+                            <a href="categories/accessories.html"><i class="fas fa-headphones"></i> Accessories</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a href="reviews/iphone-15-review.html" class="nav-link"><i class="fas fa-star"></i> Reviews</a></li>
+                    <li class="nav-item"><a href="#live-deals" class="nav-link"><i class="fas fa-bolt"></i> Live Deals</a></li>
+                    <li class="nav-item"><a href="about.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="Search Amazon & Flipkart..." id="searchInput">
+                    <button onclick="searchLiveProducts()"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Affiliate Disclosure Banner -->
+    <div class="affiliate-banner">
+        <div class="container">
+            <p><i class="fas fa-exclamation-circle"></i> <strong>Live Affiliate Deals:</strong> Real-time prices from Amazon & Flipkart. We earn commission on purchases. <a href="affiliate-disclosure.html">Learn more</a></p>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Live Amazon & Flipkart Deals Updated Daily</h1>
+                <p>Get real-time product prices with direct affiliate links. We fetch live data from Amazon & Flipkart to bring you the best deals.</p>
+                <div class="hero-buttons">
+                    <a href="#live-products" class="btn btn-primary">
+                        <i class="fas fa-bolt"></i> View Live Deals
+                    </a>
+                    <a href="categories/mobiles.html" class="btn btn-secondary">
+                        <i class="fas fa-mobile-alt"></i> Mobiles
+                    </a>
+                    <a href="categories/laptops.html" class="btn btn-secondary">
+                        <i class="fas fa-laptop"></i> Laptops
+                    </a>
+                </div>
+                <div class="trust-badges">
+                    <div class="badge">
+                        <i class="fas fa-sync-alt"></i>
+                        <span>Live Price Updates</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fab fa-amazon"></i>
+                        <span>Amazon Products</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span>Flipkart Products</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Affiliate Links</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="live-price-ticker">
+                    <div class="ticker-title">Live Price Updates</div>
+                    <div class="ticker-items">
+                        <span>iPhone 15: ₹79,900 <i class="fas fa-arrow-down text-success"></i></span>
+                        <span>Samsung S24: ₹69,999 <i class="fas fa-arrow-up text-danger"></i></span>
+                        <span>Dell Laptop: ₹45,999 <i class="fas fa-arrow-down text-success"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Live Products Section -->
+        <section id="live-products" class="live-products-section">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <i class="fas fa-bolt"></i> Live Amazon & Flipkart Deals
+                    <span class="live-indicator">
+                        <i class="fas fa-circle"></i> LIVE
+                    </span>
+                </h2>
+                <p class="section-subtitle">Real-time prices fetched from Amazon & Flipkart. Prices update every 5 minutes.</p>
+                
+                <!-- Platform Filters -->
+                <div class="platform-filters">
+                    <button class="filter-btn active" data-filter="all">
+                        <i class="fas fa-globe"></i> All Platforms
+                    </button>
+                    <button class="filter-btn" data-filter="amazon">
+                        <i class="fab fa-amazon"></i> Amazon Only
+                    </button>
+                    <button class="filter-btn" data-filter="flipkart">
+                        <i class="fas fa-shopping-cart"></i> Flipkart Only
+                    </button>
+                    <button class="filter-btn" data-filter="discount">
+                        <i class="fas fa-percentage"></i> Discount > 20%
+                    </button>
+                </div>
+                
+                <!-- Price Sort -->
+                <div class="sort-options">
+                    <select id="sortProducts" onchange="sortLiveProducts()">
+                        <option value="featured">Sort By: Featured</option>
+                        <option value="price_low">Price: Low to High</option>
+                        <option value="price_high">Price: High to Low</option>
+                        <option value="discount">Discount %</option>
+                        <option value="rating">Customer Rating</option>
+                    </select>
+                    <button class="btn-refresh" onclick="refreshLiveProducts()">
+                        <i class="fas fa-sync-alt"></i> Refresh Prices
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingProducts" class="loading-container">
+                <div class="spinner"></div>
+                <p>Fetching live products from Amazon & Flipkart...</p>
+                <p class="loading-sub">This may take a moment</p>
+            </div>
+
+            <!-- Products Container -->
+            <div id="productsContainer" class="products-grid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+
+            <!-- Price Update Info -->
+            <div class="price-update-info">
+                <i class="fas fa-clock"></i>
+                <span>Prices updated: <span id="lastUpdateTime">Just now</span></span>
+                <span class="update-note">Next update in: <span id="nextUpdateTimer">5:00</span> minutes</span>
+            </div>
+        </section>
+
+        <!-- Category Quick Links -->
+        <section class="category-quick-links">
+            <h3 class="section-subtitle">Quick Shop by Category</h3>
+            <div class="quick-categories">
+                <a href="#" class="quick-category" onclick="loadCategory('mobiles')">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Smartphones</span>
+                    <small>From ₹7,999</small>
+                </a>
+                <a href="#" class="quick-category" onclick="loadCategory('laptops')">
+                    <i class="fas fa-laptop"></i>
+                    <span>Laptops</span>
+                    <small>From ₹29,999</small>
+                </a>
+                <a href="#" class="quick-category" onclick="loadCategory('headphones')">
+                    <i class="fas fa-headphones"></i>
+                    <span>Headphones</span>
+                    <small>From ₹899</small>
+                </a>
+                <a href="#" class="quick-category" onclick="loadCategory('smartwatches')">
+                    <i class="fas fa-clock"></i>
+                    <span>Smart Watches</span>
+                    <small>From ₹1,999</small>
+                </a>
+                <a href="#" class="quick-category" onclick="loadCategory('tablets')">
+                    <i class="fas fa-tablet-alt"></i>
+                    <span>Tablets</span>
+                    <small>From ₹9,999</small>
+                </a>
+            </div>
+        </section>
+
+        <!-- Featured Reviews -->
+        <section class="featured-reviews">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i> Featured Product Reviews
+            </h2>
+            <p class="section-subtitle">Detailed reviews with 360° views and comparison</p>
+            
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-badge">Best Seller</div>
+                    <img src="https://images.unsplash.com/photo-1695048133142-1a20484d2569?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="iPhone 15">
+                    <div class="review-content">
+                        <h4>iPhone 15 Review</h4>
+                        <div class="review-meta">
+                            <span class="rating"><i class="fas fa-star"></i> 4.5/5</span>
+                            <span class="platform"><i class="fab fa-amazon"></i> Amazon</span>
+                        </div>
+                        <p>Complete review with 360° views and price comparison</p>
+                        <a href="reviews/iphone-15-review.html" class="btn btn-outline">Read Full Review</a>
+                    </div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-badge">Editor's Choice</div>
+                    <img src="https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Samsung S24">
+                    <div class="review-content">
+                        <h4>Samsung S24 Review</h4>
+                        <div class="review-meta">
+                            <span class="rating"><i class="fas fa-star"></i> 5/5</span>
+                            <span class="platform"><i class="fas fa-shopping-cart"></i> Flipkart</span>
+                        </div>
+                        <p>AI features, camera test, and battery life analysis</p>
+                        <a href="reviews/samsung-s24-review.html" class="btn btn-outline">Read Full Review</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works -->
+        <section class="how-it-works">
+            <h2 class="section-title">How We Get Live Prices</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon"><i class="fas fa-plug"></i></div>
+                    <h4>API Integration</h4>
+                    <p>We connect to Amazon PA-API and Flipkart Affiliate API to fetch real-time product data</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h4>Live Updates</h4>
+                    <p>Prices update every 5 minutes automatically. You always see current prices</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon"><i class="fas fa-link"></i></div>
+                    <h4>Affiliate Links</h4>
+                    <p>Each product has secure affiliate links with your commission ID</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Price Tracking</h4>
+                    <p>We track price history to show you the best time to buy</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>TechDealsHub</h3>
+                    <p class="footer-about">Real-time Amazon & Flipkart product deals with affiliate links. Live prices updated every 5 minutes.</p>
+                    <div class="api-badges">
+                        <span class="api-badge"><i class="fab fa-amazon"></i> Amazon PA-API</span>
+                        <span class="api-badge"><i class="fas fa-shopping-cart"></i> Flipkart API</span>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Live Features</h3>
+                    <ul>
+                        <li><a href="#live-products"><i class="fas fa-bolt"></i> Live Price Updates</a></li>
+                        <li><a href="#"><i class="fas fa-chart-line"></i> Price History</a></li>
+                        <li><a href="#"><i class="fas fa-bell"></i> Price Alerts</a></li>
+                        <li><a href="#"><i class="fas fa-percentage"></i> Discount Tracker</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Affiliate Programs</h3>
+                    <ul>
+                        <li><a href="affiliate-disclosure.html"><i class="fas fa-exclamation-circle"></i> Disclosure</a></li>
+                        <li><a href="https://affiliate-program.amazon.in" target="_blank"><i class="fab fa-amazon"></i> Amazon Associates</a></li>
+                        <li><a href="https://affiliate.flipkart.com" target="_blank"><i class="fas fa-shopping-cart"></i> Flipkart Affiliate</a></li>
+                        <li><a href="privacy-policy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Get Price Alerts</h3>
+                    <p>Get notified when prices drop on your favorite products</p>
+                    <form class="alert-form" id="priceAlertForm">
+                        <input type="email" placeholder="Your email" required>
+                        <input type="text" placeholder="Product URL" required>
+                        <button type="submit"><i class="fas fa-bell"></i> Set Alert</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    <p>&copy; 2024 TechDealsHub. Real-time affiliate deals.</p>
+                    <p class="disclaimer-note">
+                        <i class="fas fa-exclamation-triangle"></i> 
+                        Product prices and availability are subject to change. We earn commissions from purchases.
+                    </p>
+                </div>
+                <div class="data-source">
+                    <p>Data Source: Amazon PA-API & Flipkart Affiliate API</p>
+                    <p>Images: Amazon/Flipkart product images</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="js/main.js"></script>
+    <script src="js/live-products.js"></script>
+    <script src="js/amazon-api.js"></script>
+    <script src="js/flipkart-api.js"></script>
+    
+    <!-- Initialize Live Products -->
+    <script>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load live products
+            loadLiveProducts();
+            
+            // Set up auto-refresh every 5 minutes
+            setInterval(refreshLiveProducts, 5 * 60 * 1000);
+            
+            // Update timer every minute
+            setInterval(updateNextUpdateTimer, 60 * 1000);
+            
+            // Initialize price alert form
+            document.getElementById('priceAlertForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input[type="email"]').value;
+                const url = this.querySelector('input[type="text"]').value;
+                alert(`Price alert set for ${url}. We'll notify ${email} when prices drop.`);
+                this.reset();
+            });
+        });
+        
+        // Function to load live products
+        async function loadLiveProducts() {
+            try {
+                // Show loading
+                document.getElementById('loadingProducts').style.display = 'block';
+                document.getElementById('productsContainer').innerHTML = '';
+                
+                // Load sample data (in real implementation, fetch from API)
+                const products = await fetchLiveProducts();
+                
+                // Render products
+                renderProducts(products);
+                
+                // Update timestamp
+                document.getElementById('lastUpdateTime').textContent = new Date().toLocaleTimeString();
+                
+            } catch (error) {
+                console.error('Error loading products:', error);
+                document.getElementById('productsContainer').innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Unable to load live products</h3>
+                        <p>Please check your API configuration or try again later.</p>
+                        <button onclick="loadLiveProducts()" class="btn btn-primary">
+                            <i class="fas fa-redo"></i> Retry
+                        </button>
+                    </div>
+                `;
+            } finally {
+                // Hide loading
+                document.getElementById('loadingProducts').style.display = 'none';
+            }
+        }
+        
+        // Fetch live products (sample data - replace with real API call)
+        async function fetchLiveProducts() {
+            // In real implementation, fetch from your API endpoint
+            // Example: const response = await fetch('/api/products/live');
+            
+            // Return sample data for demonstration
+            return [
+                {
+                    id: 1,
+                    title: "Apple iPhone 15 (128 GB) - Black",
+                    image: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 79900,
+                    original_price: 89900,
+                    discount: 11,
+                    platform: "amazon",
+                    affiliate_link: "https://amzn.to/3iphone15",
+                    rating: 4.5,
+                    reviews: 1245,
+                    features: ["48MP Camera", "A16 Bionic", "iOS 17"],
+                    category: "mobiles",
+                    last_updated: "2 minutes ago"
+                },
+                {
+                    id: 2,
+                    title: "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB RAM, 256GB Storage)",
+                    image: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 129999,
+                    original_price: 139999,
+                    discount: 7,
+                    platform: "flipkart",
+                    affiliate_link: "https://fkrt.it/s24ultra",
+                    rating: 4.8,
+                    reviews: 892,
+                    features: ["200MP Camera", "Snapdragon 8 Gen 3", "S Pen"],
+                    category: "mobiles",
+                    last_updated: "5 minutes ago"
+                },
+                {
+                    id: 3,
+                    title: "Dell Inspiron 15 Laptop, Intel Core i5, 16GB RAM, 512GB SSD",
+                    image: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 54999,
+                    original_price: 64999,
+                    discount: 15,
+                    platform: "amazon",
+                    affiliate_link: "https://amzn.to/3dell",
+                    rating: 4.3,
+                    reviews: 1567,
+                    features: ["Intel i5", "16GB RAM", "512GB SSD"],
+                    category: "laptops",
+                    last_updated: "1 minute ago"
+                },
+                {
+                    id: 4,
+                    title: "OnePlus Nord CE 3 Lite 5G (Pastel Lime, 8GB RAM, 128GB Storage)",
+                    image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 19999,
+                    original_price: 22999,
+                    discount: 13,
+                    platform: "flipkart",
+                    affiliate_link: "https://fkrt.it/oneplusnord",
+                    rating: 4.2,
+                    reviews: 2345,
+                    features: ["108MP Camera", "Snapdragon 695", "67W Fast Charging"],
+                    category: "mobiles",
+                    last_updated: "3 minutes ago"
+                },
+                {
+                    id: 5,
+                    title: "Apple MacBook Air M2 (13-inch, 8GB RAM, 256GB SSD)",
+                    image: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 99900,
+                    original_price: 119900,
+                    discount: 17,
+                    platform: "amazon",
+                    affiliate_link: "https://amzn.to/3macbook",
+                    rating: 4.7,
+                    reviews: 1890,
+                    features: ["M2 Chip", "8GB RAM", "256GB SSD"],
+                    category: "laptops",
+                    last_updated: "4 minutes ago"
+                },
+                {
+                    id: 6,
+                    title: "Sony WH-1000XM5 Wireless Active Noise Cancelling Headphones",
+                    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
+                    price: 24990,
+                    original_price: 29990,
+                    discount: 17,
+                    platform: "flipkart",
+                    affiliate_link: "https://fkrt.it/sonyheadphones",
+                    rating: 4.6,
+                    reviews: 1234,
+                    features: ["Noise Cancelling", "30hr Battery", "Bluetooth 5.2"],
+                    category: "accessories",
+                    last_updated: "6 minutes ago"
+                }
+            ];
+        }
+        
+        // Render products to the page
+        function renderProducts(products) {
+            const container = document.getElementById('productsContainer');
+            
+            if (!products || products.length === 0) {
+                container.innerHTML = `
+                    <div class="no-products">
+                        <i class="fas fa-search"></i>
+                        <h3>No products found</h3>
+                        <p>Try changing your filters or check back later</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const productsHTML = products.map(product => `
+                <div class="live-product-card" data-platform="${product.platform}" data-category="${product.category}" data-discount="${product.discount}">
+                    ${product.discount >= 20 ? '<div class="hot-deal-badge"><i class="fas fa-fire"></i> HOT DEAL</div>' : ''}
+                    <div class="product-platform ${product.platform}">
+                        <i class="${product.platform === 'amazon' ? 'fab fa-amazon' : 'fas fa-shopping-cart'}"></i>
+                        ${product.platform === 'amazon' ? 'Amazon' : 'Flipkart'}
+                        <span class="update-time">${product.last_updated}</span>
+                    </div>
+                    
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}" loading="lazy">
+                    </div>
+                    
+                    <div class="product-details">
+                        <h3 class="product-title">${product.title}</h3>
+                        
+                        <div class="product-rating">
+                            ${generateStars(product.rating)}
+                            <span class="rating-text">${product.rating}/5 (${product.reviews.toLocaleString()})</span>
+                        </div>
+                        
+                        <div class="price-section">
+                            <div class="current-price">₹${product.price.toLocaleString('en-IN')}</div>
+                            <div class="original-price">₹${product.original_price.toLocaleString('en-IN')}</div>
+                            <div class="discount-badge">${product.discount}% OFF</div>
+                        </div>
+                        
+                        <div class="product-features">
+                            ${product.features.slice(0, 3).map(feature => 
+                                `<span><i class="fas fa-check"></i> ${feature}</span>`
+                            ).join('')}
+                        </div>
+                        
+                        <div class="product-actions">
+                            <a href="${product.affiliate_link}" 
+                               target="_blank" 
+                               class="btn ${product.platform === 'amazon' ? 'btn-amazon' : 'btn-flipkart'}"
+                               onclick="trackPurchase('${product.id}', '${product.platform}')">
+                                <i class="${product.platform === 'amazon' ? 'fab fa-amazon' : 'fas fa-shopping-cart'}"></i>
+                                Buy on ${product.platform === 'amazon' ? 'Amazon' : 'Flipkart'}
+                            </a>
+                            <button class="btn btn-outline compare-btn" onclick="compareProduct(${product.id})">
+                                <i class="fas fa-balance-scale"></i> Compare
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            container.innerHTML = productsHTML;
+        }
+        
+        // Generate star ratings
+        function generateStars(rating) {
+            let stars = '';
+            for (let i = 1; i <= 5; i++) {
+                if (i <= Math.floor(rating)) {
+                    stars += '<i class="fas fa-star"></i>';
+                } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
+                    stars += '<i class="fas fa-star-half-alt"></i>';
+                } else {
+                    stars += '<i class="far fa-star"></i>';
+                }
+            }
+            return stars;
+        }
+        
+        // Platform filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                filterProducts(filter);
+            });
+        });
+        
+        // Filter products
+        function filterProducts(filter) {
+            const cards = document.querySelectorAll('.live-product-card');
+            
+            cards.forEach(card => {
+                const platform = card.dataset.platform;
+                const discount = parseInt(card.dataset.discount);
+                
+                switch(filter) {
+                    case 'all':
+                        card.style.display = 'block';
+                        break;
+                    case 'amazon':
+                        card.style.display = platform === 'amazon' ? 'block' : 'none';
+                        break;
+                    case 'flipkart':
+                        card.style.display = platform === 'flipkart' ? 'block' : 'none';
+                        break;
+                    case 'discount':
+                        card.style.display = discount >= 20 ? 'block' : 'none';
+                        break;
+                }
+            });
+        }
+        
+        // Sort products
+        function sortLiveProducts() {
+            const sortBy = document.getElementById('sortProducts').value;
+            // Implementation depends on your data structure
+            console.log('Sorting by:', sortBy);
+        }
+        
+        // Refresh products
+        function refreshLiveProducts() {
+            document.getElementById('lastUpdateTime').textContent = 'Updating...';
+            loadLiveProducts();
+        }
+        
+        // Update next update timer
+        function updateNextUpdateTimer() {
+            // This would update a countdown timer
+            // For now, just show static text
+        }
+        
+        // Load category
+        function loadCategory(category) {
+            // In real implementation, filter by category
+            console.log('Loading category:', category);
+            alert(`Loading ${category} products...`);
+        }
+        
+        // Track purchase
+        function trackPurchase(productId, platform) {
+            console.log(`Tracking purchase: ${productId} on ${platform}`);
+            // In real implementation, send to analytics
+        }
+        
+        // Search live products
+        function searchLiveProducts() {
+            const query = document.getElementById('searchInput').value.trim();
+            if (query) {
+                alert(`Searching for "${query}" on Amazon & Flipkart...`);
+                // In real implementation, call search API
+            } else {
+                alert('Please enter a search term');
+            }
+        }
+    </script>
+</body>
+</html>

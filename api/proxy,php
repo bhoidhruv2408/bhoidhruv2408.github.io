@@ -1,0 +1,98 @@
+<?php
+// api/proxy.php - API Proxy for Amazon/Flipkart APIs
+
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+
+$action = $_GET['action'] ?? 'search';
+$query = $_GET['query'] ?? '';
+$platform = $_GET['platform'] ?? 'amazon';
+
+// Your API credentials
+$amazon_access_key = 'YOUR_AMAZON_ACCESS_KEY';
+$amazon_secret_key = 'YOUR_AMAZON_SECRET_KEY';
+$amazon_tag = 'YOUR_AMAZON_ASSOCIATE_TAG';
+
+$flipkart_token = 'YOUR_FLIPKART_TOKEN';
+$flipkart_affiliate_id = 'YOUR_FLIPKART_AFFILIATE_ID';
+
+if ($platform === 'amazon') {
+    echo json_encode(fetchAmazonProducts($query, $amazon_access_key, $amazon_secret_key, $amazon_tag));
+} else {
+    echo json_encode(fetchFlipkartProducts($query, $flipkart_token, $flipkart_affiliate_id));
+}
+
+function fetchAmazonProducts($query, $access_key, $secret_key, $associate_tag) {
+    $params = [
+        'Service' => 'AWSECommerceService',
+        'Operation' => 'ItemSearch',
+        'AWSAccessKeyId' => $access_key,
+        'AssociateTag' => $associate_tag,
+        'SearchIndex' => 'All',
+        'Keywords' => $query,
+        'ResponseGroup' => 'ItemAttributes,Offers,Images',
+        'Timestamp' => gmdate('Y-m-d\TH:i:s\Z')
+    ];
+    
+    ksort($params);
+    $canonical_query = http_build_query($params, '', '&', PHP_QUERY_RFC3986);
+    $string_to_sign = "GET\nwebservices.amazon.in\n/onca/xml\n{$canonical_query}";
+    $signature = base64_encode(hash_hmac('sha256', $string_to_sign, $secret_key, true));
+    $params['Signature'] = $signature;
+    
+    $url = 'https://webservices.amazon.in/onca/xml?' . http_build_query($params);
+    
+    $response = file_get_contents($url);
+    $xml = simplexml_load_string($response);
+    
+    // Parse XML and return JSON
+    $products = [];
+    foreach ($xml->Items->Item as $item) {
+        $products[] = [
+            'asin' => (string)$item->ASIN,
+            'title' => (string)$item->ItemAttributes->Title,
+            'price' => (float)$item->OfferSummary->LowestNewPrice->Amount / 100,
+            'original_price' => (float)$item->ItemAttributes->ListPrice->Amount / 100,
+            'image' => (string)$item->LargeImage->URL,
+            'rating' => (float)$item->CustomerReviews->AverageRating,
+            'url' => (string)$item->DetailPageURL . '&tag=' . $associate_tag
+        ];
+    }
+    
+    return ['success' => true, 'products' => $products];
+}
+
+function fetchFlipkartProducts($query, $token, $affiliate_id) {
+    $url = "https://affiliate-api.flipkart.net/affiliate/api/{$affiliate_id}.json?query=" . urlencode($query);
+    
+    $options = [
+        'http' => [
+            'header' => "Fk-Affiliate-Id: {$affiliate_id}\r\n" .
+                       "Fk-Affiliate-Token: {$token}\r\n"
+        ]
+    ];
+    
+    $context = stream_context_create($options);
+    $response = file_get_contents($url, false, $context);
+    
+    $data = json_decode($response, true);
+    
+    $products = [];
+    if (isset($data['productInfoList'])) {
+        foreach ($data['productInfoList'] as $item) {
+            $product = $item['productBaseInfoV1'];
+            $products[] = [
+                'pid' => $product['productIdentifier']['productId'],
+                'title' => $product['productAttributes']['title'],
+                'price' => $product['productAttributes']['sellingPrice']['amount'],
+                'original_price' => $product['productAttributes']['maximumRetailPrice']['amount'],
+                'image' => $product['productAttributes']['imageUrls']['400x400'],
+                'rating' => $product['productAttributes']['productRating'],
+                'url' => "https://dl.flipkart.com/s/{$affiliate_id}/p/{$product['productIdentifier']['productId']}"
+            ];
+        }
+    }
+    
+    return ['success' => true, 'products' => $products];
+}
+?>
