@@ -1,4 +1,4 @@
-/* live-products.css - Live Products Styling */
+/* live-products.css - Live Products Styling - CORRECTED VERSION */
 
 /* ========== LIVE PRODUCTS SECTION ========== */
 .live-products-section {
@@ -20,10 +20,10 @@
     font-size: 12px;
     font-weight: 600;
     margin-left: 10px;
-    animation: pulse 2s infinite;
+    animation: pulse360 2s infinite; /* FIXED: Changed from 'pulse' to 'pulse360' */
 }
 
-@keyframes pulse {
+@keyframes pulse360 { /* FIXED: Changed from 'pulse' to 'pulse360' */
     0% { opacity: 1; }
     50% { opacity: 0.7; }
     100% { opacity: 1; }
@@ -89,7 +89,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    transition: background 0.3s ease;
+    transition: background-color 0.3s ease; /* FIXED: Added property name */
 }
 
 .btn-refresh:hover {
@@ -109,11 +109,11 @@
     border-radius: 50%;
     width: 50px;
     height: 50px;
-    animation: spin 1s linear infinite;
+    animation: spin360 1s linear infinite; /* FIXED: Changed from 'spin' to 'spin360' */
     margin: 0 auto 20px;
 }
 
-@keyframes spin {
+@keyframes spin360 { /* FIXED: Changed from 'spin' to 'spin360' */
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
@@ -182,7 +182,7 @@
     margin-left: auto;
     font-size: 11px;
     color: #6b7280;
-    font-weight: normal;
+    font-weight: 400; /* FIXED: Changed from 'normal' to '400' */
 }
 
 .product-image {
@@ -540,6 +540,43 @@
     text-align: right;
 }
 
+/* ========== STOCK INFO (Added missing from HTML) ========== */
+.stock-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    background: #f0fdf4;
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+.stock-status.in-stock {
+    color: #10b981;
+}
+
+.stock-status.out-stock {
+    color: #ef4444;
+}
+
+.delivery-info {
+    color: #2563eb;
+}
+
+/* ========== TEXT COLOR UTILITIES (Added for HTML) ========== */
+.text-success {
+    color: #10b981;
+}
+
+.text-danger {
+    color: #ef4444;
+}
+
+.text-warning {
+    color: #f59e0b;
+}
+
 /* ========== ERROR & NO PRODUCTS ========== */
 .error-message,
 .no-products {
@@ -560,6 +597,46 @@
 .error-message h3,
 .no-products h3 {
     margin-bottom: 10px;
+}
+
+/* ========== HERO ENHANCEMENTS (Added for HTML) ========== */
+.live-price-ticker {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.ticker-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #1f2937;
+}
+
+.ticker-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.ticker-items span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #f9fafb;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.price-up {
+    color: #10b981;
+}
+
+.price-down {
+    color: #ef4444;
 }
 
 /* ========== RESPONSIVE ========== */
