@@ -8,7 +8,7 @@ const smartphoneProducts = {
             category: "premium",
             badge: "Best iPhone 2025",
             priceSegment: "Above ₹1,20,000",
-            image: "images/16pro.jpg",
+            image: "https://m.media-amazon.com/images/I/81fzyWvq6gL._SL1500_.jpg", // Fixed URL
             specs: {
                 display: "6.9-inch Super Retina XDR OLED, Always-On",
                 processor: "Apple A18 Pro (3nm)",
