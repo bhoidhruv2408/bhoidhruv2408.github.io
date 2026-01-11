@@ -111,7 +111,7 @@ const smartphoneProducts = {
             },
             rating: 4.5,
             reviews: "35,000+",
-            amazonLink: "hhttps://amzn.to/3NklDfJttps://amzn.to/s25fe"
+            amazonLink: "https://amzn.to/3NklDfJ"
         },
         {
             id: "google-pixel9a",
